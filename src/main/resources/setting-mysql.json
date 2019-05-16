@@ -1,0 +1,22 @@
+{
+  "daoPath": "com.lppz.activiti.admin.dao",
+  "dbType": "mysql",
+  "dbUrl": "jdbc:mysql://192.168.32.135:3306/lppz_activiti_admin",
+  "user": "root",
+  "pass": "mysqlroot",
+  "pojoPath": "com.lppz.activiti.admin.pojo",
+  "table2PojoName": [
+    {
+      "cls": "User",
+      "tb": "t_user"
+    },
+    {
+      "cls": "Menu",
+      "tb": "t_menu"
+    },
+    {
+      "cls": "Role",
+      "tb": "t_role"
+    }
+  ]
+}

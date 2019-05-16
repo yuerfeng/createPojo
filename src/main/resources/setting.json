@@ -1,0 +1,14 @@
+{
+  "daoPath": "com.lppz.shop.dao",
+  "dbType": "oracle",
+  "dbUrl": "jdbc:oracle:thin:@192.168.32.250:1521:smzqint",
+  "user": "shop",
+  "pass": "shop",
+  "pojoPath": "com.lppz.shop.pojo",
+  "table2PojoName": [
+    {
+      "cls": "Shop",
+      "tb": "T_SHOP"
+    }
+  ]
+}
