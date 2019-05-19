@@ -19,33 +19,35 @@
 		</#if>
 	</#list>
 </sql>
-<sql id="base_where" >
+<sql id="Base_where" >
 	<where>
 		<#list FIELDS as FIELD>
 			<#if FIELD.javaType == 'String'>
 				<if test="${FIELD.property} != null and ${FIELD.property} != '' ">
 					and ${FIELD.column} = <#noparse>#{</#noparse>${FIELD.property}<#noparse>}</#noparse>
 				</if>
+			<#else>
+				and ${FIELD.column} = <#noparse>#{</#noparse>${FIELD.property}<#noparse>}</#noparse>
 			</#if>
 		</#list>
 	</where>
 </sql>
-<select id="get" resultMap="BaseResultMap" >
+<select id="get" resultType="${POJO_PACKAGE}.${CLASS_NAME}" >
 	select		<include refid="Base_Column_List" />
 	from ${TABLE_NAME}
-	<include refid="base_where"/>
+	where id = #{id}
 </select>
 
-<select id="findAllList" resultMap="BaseResultMap" >
+<select id="getByEntity" resultType="${POJO_PACKAGE}.${CLASS_NAME}" >
 	select		<include refid="Base_Column_List" />
 	from ${TABLE_NAME}
-	<include refid="base_where"/>
+	<include refid="Base_where"/>
 </select>
 
-<select id="findList" resultMap="BaseResultMap" >
+<select id="findList" resultType="${POJO_PACKAGE}.${CLASS_NAME}" >
 	select		<include refid="Base_Column_List" />
 	from ${TABLE_NAME}
-	<include refid="base_where"/>
+	<include refid="Base_where"/>
 </select>
 
 <insert id="insert" parameterType="${POJO_PACKAGE}.${CLASS_NAME}">
@@ -81,7 +83,7 @@ values (
 			</#if>
 		</#list>
 	</set>
-	<include refid="base_where"/>
+	<include refid="Base_where"/>
 </update>
 
 <update id="delete">
