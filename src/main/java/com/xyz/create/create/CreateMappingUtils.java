@@ -24,6 +24,7 @@ public class CreateMappingUtils {
 		try {
 			String base = System.getProperties().getProperty("user.dir");
 			configuration.setDirectoryForTemplateLoading(new File(base));
+			configuration.setTagSyntax(Configuration.AUTO_DETECT_TAG_SYNTAX);
 			//获得模板，传进来的ftl模板的名字
 			Template template = configuration.getTemplate("model-mapper.ftl");
 			Map map = new HashMap();
