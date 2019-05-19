@@ -27,7 +27,9 @@
 					and ${FIELD.column} = <#noparse>#{</#noparse>${FIELD.property}<#noparse>}</#noparse>
 				</if>
 			<#else>
-				and ${FIELD.column} = <#noparse>#{</#noparse>${FIELD.property}<#noparse>}</#noparse>
+                <if test="${FIELD.property} != null">
+                    and ${FIELD.column} = <#noparse>#{</#noparse>${FIELD.property}<#noparse>}</#noparse>
+                </if>
 			</#if>
 		</#list>
 	</where>
@@ -35,7 +37,7 @@
 <select id="get" resultType="${POJO_PACKAGE}.${CLASS_NAME}" >
 	select		<include refid="Base_Column_List" />
 	from ${TABLE_NAME}
-	where id = #{id}
+	where id = <#noparse>#{id}</#noparse>
 </select>
 
 <select id="getByEntity" resultType="${POJO_PACKAGE}.${CLASS_NAME}" >
