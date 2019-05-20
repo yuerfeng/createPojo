@@ -61,9 +61,10 @@ public class Job {
         }
         //把模板文件释放到当前目录
         {
-            releaseFtlFile("model-dao.ftl");
-            releaseFtlFile("model-mapper.ftl");
-            releaseFtlFile("model-pojo.ftl");
+            releaseFtlFile("model-CrudDao.ftl","CrudDao.java");
+            releaseFtlFile("model-dao.ftl",null);
+            releaseFtlFile("model-mapper.ftl",null);
+            releaseFtlFile("model-pojo.ftl",null);
         }
 
 
@@ -146,10 +147,10 @@ public class Job {
         System.out.println("操作完成!");
     }
 
-    private static void releaseFtlFile(String fileName){
+    private static void releaseFtlFile(String fileName,String targetName){
         try{
             String base = System.getProperties().getProperty("user.dir");
-            FileOutputStream fileOutputStream = new FileOutputStream(base + File.separator + fileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(base + File.separator + (StringUtils.isBlank(targetName)?fileName:targetName));
             IOUtils.copy(Job.class.getClassLoader().getResourceAsStream(fileName),fileOutputStream);
             OutputStreamWriter outputStream = new OutputStreamWriter(fileOutputStream, "utf-8");
             outputStream.flush();
